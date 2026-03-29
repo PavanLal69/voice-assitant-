@@ -27,3 +27,6 @@ known_faces/
 Thumbs.db
 
 .env
+
+# Logs
+server.log
