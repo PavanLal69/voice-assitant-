@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --primary-glow: rgba(0, 195, 255, 0.4);
+  --neon-blue: #00f3ff;
+  --neon-magenta: #ff00ff;
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Explicitly allow vertical scroll */
+  /* Massive scroll height for 9 acts. We map scroll progress (0-1) to WebGL. */
+  height: 900vh;
+}
+
+/* Base fixed containers */
+#root {
+  width: 100%;
+  height: 900vh;
+  /* Match body height to ensure GSAP scrub works */
+}
+
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  /* Let the scene handle raycasting internally if needed */
+}
+
+/* UI Overlay spans exactly the viewport, static positioning, internally managed by GSAP opacity/transforms based on absolute scroll proxy */
+.ui-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.act-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Move text to bottom */
+  align-items: center;
+  padding-bottom: 15vh; /* Keep it above the exact bottom edge */
+  opacity: 0;
+  /* All start hidden */
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+p {
+  text-align: center;
+}
+
+.cinematic-text {
+  font-size: clamp(2rem, 5vw, 6rem);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  font-weight: 900;
+  line-height: 1.1;
+  /* Stronger shadow to ensure text is visible over the bright 3D core */
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.subtitle-text {
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 300;
+  color: #aaaaaa;
+  margin-top: 1rem;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+}
+
+/* Act-specific Layouts inside fixed position */
+/* Act VI - Identity */
+.identity-grid {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  border: 4px solid transparent;
+  box-shadow: inset 0 0 100px rgba(0, 243, 255, 0.0);
+}
+
+/* Act VIII - Dominion / Dashboard */
+.dashboard-ui {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  font-family: var(--font-mono);
+  color: var(--neon-blue);
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transform: perspective(800px) rotateY(15deg);
+  /* 3D tilt */
+}
+
+.metric-panel {
+  background: rgba(0, 10, 20, 0.4);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  width: 300px;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.metric-header {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+  padding-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Act IX CTA */
+.cta-button {
+  margin-top: 4rem;
+  padding: 1rem 3rem;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.8);
+}

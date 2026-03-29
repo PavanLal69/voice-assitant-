@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KREO System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- BOOT SCREEN -->
+<div class="screen active" id="boot">
+    <h1 class="logo">KREO</h1>
+    <p class="status">SYSTEM READY</p>
+    <div class="progress"></div>
+</div>
+
+<!-- LOCK SCREEN -->
+<div class="screen" id="lock">
+    <h2>🔒 SYSTEM LOCKED</h2>
+    <p>Authentication Required</p>
+    <button onclick="startFace()">INITIATE</button>
+</div>
+
+<!-- FACE RECOGNITION -->
+<div class="screen" id="face">
+    <h2>FACE RECOGNITION ACTIVE</h2>
+    <div class="face-box">
+        <video id="webcam" autoplay muted></video>
+    </div>
+    <p>Scanning...</p>
+</div>
+
+<!-- DASHBOARD -->
+<div class="screen" id="dashboard">
+    <div class="sidebar">
+        <h3>CORE SYSTEM</h3>
+        <ul>
+            <li>Visual Input</li>
+            <li>System Metrics</li>
+            <li>Security</li>
+            <li>Network</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <h1>Welcome User</h1>
+        <div class="avatar-container">
+            <div class="blob"></div>
+            <div class="avatar-text">
+                <h2>Hi, I'm <span>KREO</span></h2>
+                <p>your AI assistant</p>
+            </div>
+        </div>
+        <div style="margin: 20px 0; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button onclick="manualActivate()">🎤 Activate KREO</button>
+            <button onclick="testAI()">🧪 Test AI Connection</button>
+            <button onclick="checkMicrophone()">🎙️ Check Microphone</button>
+            <button onclick="startServerGuide()">📖 Start Server Guide</button>
+        </div>
+        <div class="cards">
+            <div class="card" id="cpu">CPU: 23%</div>
+            <div class="card" id="ram">Memory: 41%</div>
+            <div class="card">Security: ACTIVE</div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
